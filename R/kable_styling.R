@@ -144,7 +144,8 @@ kable_styling <- function(kable_input,
                             stripe_color = stripe_color,
                             stripe_index = stripe_index,
                             latex_table_env = latex_table_env,
-                            table.envir = table.envir))
+                            table.envir = table.envir,
+                            no.table=FALSE))
   }
 }
 
@@ -483,7 +484,17 @@ styling_latex_position <- function(x, table_info, position, latex_options,
 
 styling_latex_position_center <- function(x, table_info, hold_position,
                                           table.envir) {
-  if (!table_info$table_env & table_info$tabular == "tabular") {
+  if (!table_info$table_env & table_info$tabular == "tabular" &
+            no.table==TRUE) {
+    x <- paste0("\\centering", x,
+                "\n")
+    if (hold_position == "hold_position") {
+      x <- styling_latex_hold_position(x)
+    } else {
+      x <- styling_latex_HOLD_position(x)
+    }
+  } else if (!table_info$table_env & table_info$tabular == "tabular" &
+            no.table==FALSE) {
     x <- paste0("\\begin{", table.envir, "}\n\\centering", x,
                 "\n\\end{", table.envir, "}")
     if (hold_position == "hold_position") {
