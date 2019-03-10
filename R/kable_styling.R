@@ -324,7 +324,7 @@ pdfTable_styling <- function(kable_input,
   }
 
   out <- styling_latex_position(out, table_info, position, latex_options,
-                                table.envir)
+                                table.envir, no.table)
 
   out <- structure(out, format = "latex", class = "knitr_kable")
   attr(out, "kable_meta") <- table_info
@@ -524,8 +524,8 @@ styling_latex_position_float <- function(x, table_info, option, table.envir, no.
   if (table_info$tabular == "longtable") {
     warning("wraptable is not supported for longtable.")
     if (option == "l") return(styling_latex_position_left(x, table_info))
-    if (option == "r") return(styling_latex_position_right(x, table_info, F,
-                                                           table.envir, no.table))
+    if (option == "r") return(styling_latex_position_right(x, table_info, 
+                F, table.envir, no.table))
   }
   size_matrix <- sapply(sapply(table_info$contents, str_split, " & "), nchar)
   col_max_length <- apply(size_matrix, 1, max) + 4
