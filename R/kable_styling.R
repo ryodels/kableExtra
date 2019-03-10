@@ -473,7 +473,7 @@ styling_latex_position <- function(x, table_info, position, latex_options,
   switch(
     position,
     center = styling_latex_position_center(x, table_info, hold_position,
-                                           table.envir),
+                                           table.envir, no.table),
     left = styling_latex_position_left(x, table_info),
     right = styling_latex_position_right(x, table_info, hold_position,
                                          table.envir),
@@ -483,7 +483,7 @@ styling_latex_position <- function(x, table_info, position, latex_options,
 }
 
 styling_latex_position_center <- function(x, table_info, hold_position,
-                                          table.envir) {
+                                          table.envir, no.table) {
   if (!table_info$table_env & table_info$tabular == "tabular" &
             no.table==TRUE) {
     x <- paste0("\\centering", x,
@@ -517,7 +517,7 @@ styling_latex_position_right <- function(x, table_info, hold_position,
                                          table.envir) {
   warning("Position = right is only supported for longtable in LaTeX. ",
           "Setting back to center...")
-  styling_latex_position_center(x, table_info, hold_position, table.envir)
+  styling_latex_position_center(x, table_info, hold_position, table.envir, no.table)
 }
 
 styling_latex_position_float <- function(x, table_info, option, table.envir) {
