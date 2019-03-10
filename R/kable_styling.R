@@ -266,7 +266,8 @@ pdfTable_styling <- function(kable_input,
                              stripe_color,
                              stripe_index,
                              latex_table_env,
-                             table.envir) {
+                             table.envir,
+                             no.table) {
 
   latex_options <- match.arg(
     latex_options,
