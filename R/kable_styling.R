@@ -476,7 +476,7 @@ styling_latex_position <- function(x, table_info, position, latex_options,
                                            table.envir, no.table),
     left = styling_latex_position_left(x, table_info),
     right = styling_latex_position_right(x, table_info, hold_position,
-                                         table.envir),
+                                         table.envir, no.table),
     float_left = styling_latex_position_float(x, table_info, "l", table.envir),
     float_right = styling_latex_position_float(x, table_info, "r", table.envir)
   )
@@ -514,7 +514,7 @@ styling_latex_position_left <- function(x, table_info) {
 }
 
 styling_latex_position_right <- function(x, table_info, hold_position,
-                                         table.envir) {
+                                         table.envir, no.table) {
   warning("Position = right is only supported for longtable in LaTeX. ",
           "Setting back to center...")
   styling_latex_position_center(x, table_info, hold_position, table.envir, no.table)
@@ -525,7 +525,7 @@ styling_latex_position_float <- function(x, table_info, option, table.envir) {
     warning("wraptable is not supported for longtable.")
     if (option == "l") return(styling_latex_position_left(x, table_info))
     if (option == "r") return(styling_latex_position_right(x, table_info, F,
-                                                           table.envir))
+                                                           table.envir, no.table))
   }
   size_matrix <- sapply(sapply(table_info$contents, str_split, " & "), nchar)
   col_max_length <- apply(size_matrix, 1, max) + 4
