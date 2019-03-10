@@ -91,7 +91,8 @@ kable_styling <- function(kable_input,
                           stripe_index = NULL,
                           latex_table_env = NULL,
                           protect_latex = TRUE,
-                          table.envir = "table") {
+                          table.envir = "table",
+                          no.table=FALSE) {
 
   if (length(bootstrap_options) == 1 && bootstrap_options == "basic") {
     bootstrap_options <- getOption("kable_styling_bootstrap_options", "basic")
@@ -144,8 +145,7 @@ kable_styling <- function(kable_input,
                             stripe_color = stripe_color,
                             stripe_index = stripe_index,
                             latex_table_env = latex_table_env,
-                            table.envir = table.envir,
-                            no.table=FALSE))
+                            table.envir = table.envir))
   }
 }
 
