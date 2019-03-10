@@ -467,7 +467,7 @@ styling_latex_full_width <- function(x, table_info) {
 }
 
 styling_latex_position <- function(x, table_info, position, latex_options,
-                                   table.envir) {
+                                   table.envir, no.table) {
   hold_position <- intersect(c("hold_position", "HOLD_position"), latex_options)
   if (length(hold_position) == 0) hold_position <- ""
   switch(
