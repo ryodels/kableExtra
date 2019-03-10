@@ -477,8 +477,8 @@ styling_latex_position <- function(x, table_info, position, latex_options,
     left = styling_latex_position_left(x, table_info),
     right = styling_latex_position_right(x, table_info, hold_position,
                                          table.envir, no.table),
-    float_left = styling_latex_position_float(x, table_info, "l", table.envir),
-    float_right = styling_latex_position_float(x, table_info, "r", table.envir)
+    float_left = styling_latex_position_float(x, table_info, "l", table.envir, no.table),
+    float_right = styling_latex_position_float(x, table_info, "r", table.envir, no.table)
   )
 }
 
@@ -520,7 +520,7 @@ styling_latex_position_right <- function(x, table_info, hold_position,
   styling_latex_position_center(x, table_info, hold_position, table.envir, no.table)
 }
 
-styling_latex_position_float <- function(x, table_info, option, table.envir) {
+styling_latex_position_float <- function(x, table_info, option, table.envir, no.table) {
   if (table_info$tabular == "longtable") {
     warning("wraptable is not supported for longtable.")
     if (option == "l") return(styling_latex_position_left(x, table_info))
